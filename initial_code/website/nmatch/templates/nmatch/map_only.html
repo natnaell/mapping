@@ -40,15 +40,30 @@
     <script>
 
 var map, layer;
+var tractCircle;
 
 function initialize() {
 
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-
+  
   map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: chicago,
     zoom: 10
   });
+
+
+  var radiusOptions = {
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map: map,
+    center: {{ center }},
+    radius: 125000
+  };
+
+  tractCircle = new google.maps.Circle(radiusOptions);
 
   layer = new google.maps.FusionTablesLayer({
     query: {
